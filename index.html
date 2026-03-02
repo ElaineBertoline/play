@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roteiro Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="float-icons" id="float-icons"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-zone">
+      <img src="logo.png" alt="AlvesDibo" class="logo-img"
+           onerror="this.style.display='none';document.getElementById('logo-txt').style.display='block'"/>
+      <span id="logo-txt" class="logo-text">Roteiro Play</span>
+    </div>
+    <div class="header-sub">Creative Director &nbsp;·&nbsp; AI</div>
+    <div class="header-line"></div>
+  </header>
+
+  <!-- CARD -->
+  <div class="card-shell">
+
+    <div class="sec-label">Configuração do Vídeo</div>
+
+    <!-- OBJETIVO -->
+    <div class="center-block">
+      <div class="block-title">Objetivo</div>
+      <div class="pill-row" id="g-objetivo">
+        <button class="pill" data-group="objetivo" data-value="Venda Direta">💰 Venda Direta</button>
+        <button class="pill" data-group="objetivo" data-value="Autoridade">👑 Autoridade</button>
+        <button class="pill" data-group="objetivo" data-value="Conexão">❤️ Conexão</button>
+      </div>
+    </div>
+
+    <!-- PLATAFORMAS CURTOS -->
+    <div class="center-block">
+      <div class="block-title">Plataforma <span class="tag tag-short">Curtos</span></div>
+      <div class="pill-row">
+        <button class="pill" data-group="plataforma" data-value="ML Clips">ML Clips</button>
+        <button class="pill" data-group="plataforma" data-value="Shopee Video">Shopee Video</button>
+        <button class="pill" data-group="plataforma" data-value="TikTok">TikTok</button>
+        <button class="pill" data-group="plataforma" data-value="Insta Reels">Insta Reels</button>
+        <button class="pill" data-group="plataforma" data-value="Face Reels">Face Reels</button>
+        <button class="pill" data-group="plataforma" data-value="YT Shorts">YT Shorts</button>
+      </div>
+    </div>
+
+    <!-- YOUTUBE LONGO -->
+    <div class="center-block" style="margin-bottom:32px;">
+      <div class="block-title">Plataforma <span class="tag tag-long">Longos</span></div>
+      <div class="pill-row">
+        <button class="pill-yt" data-group="plataforma" data-value="YouTube Longo">▶️ &nbsp;YouTube (Longo – 2 min)</button>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- INPUTS -->
+    <div class="inputs-grid">
+
+      <div class="input-group inputs-full">
+        <label class="input-label">Produto / Serviço</label>
+        <input type="url" id="product-link" class="input-cyber" placeholder="Cole o link do produto aqui…"/>
+      </div>
+
+      <div class="input-group inputs-full">
+        <label class="input-label">Referência Visual <span class="label-opt">(até 3 imagens)</span></label>
+        <div class="upload-area">
+          <label for="product-images" class="btn-upload">📎 Selecionar Imagens</label>
+          <input type="file" id="product-images" accept="image/*" multiple style="display:none"/>
+          <div class="file-chips" id="file-chips">
+            <span class="no-file">Nenhum arquivo selecionado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group inputs-full">
+        <label class="input-label">Detalhes Adicionais <span class="label-opt">(opcional)</span></label>
+        <textarea id="extra-prompt" class="input-cyber textarea-cyber" rows="3"
+          placeholder="Ex: público feminino 25–40 anos, tom descontraído, foco no benefício X…"></textarea>
+      </div>
+
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="btn-main" id="btn-gerar">✦ GERAR ROTEIRO</button>
+      <button class="btn-ghost" id="btn-narracao">🎙️ GERAR NARRAÇÃO</button>
+      <button class="btn-ghost" id="btn-imagens">🖼️ GERAR IMAGENS</button>
+    </div>
+
+  </div><!-- /card-shell -->
+
+  <!-- RESULT -->
+  <div class="result-shell">
+    <div class="result-header">
+      <div class="result-title">◈ Roteiro Gerado</div>
+      <div class="mini-btns">
+        <button class="btn-mini" id="btn-copy">📋 Copiar</button>
+        <button class="btn-mini" id="btn-clear">🗑️ Limpar</button>
+      </div>
+    </div>
+    <div class="result-box">
+      <div class="empty" id="empty-state">
+        <div class="empty-icon-wrap">🎬</div>
+        <p>Configure os parâmetros acima e clique em<br/><strong class="gold">GERAR ROTEIRO</strong>.</p>
+        <p class="hint-sm">Cada cena tem <strong>8 segundos</strong> exatos.</p>
+      </div>
+      <div class="loader" id="loader">
+        <div class="loader-wrap">
+          <div class="loader-ring"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <p id="loader-msg">Processando com IA…</p>
+      </div>
+      <div id="table-output" style="display:none"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    © 2026 &nbsp;AlvesDibo &nbsp;·&nbsp; Inteligência Artificial para E-commerce
+  </footer>
+
+</div><!-- /wrapper -->
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
